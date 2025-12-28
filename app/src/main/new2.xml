@@ -1,0 +1,5 @@
+<androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerViewChannels"
+    android:layout_width="match_parent" android:layout_height="match_parent" />```
+
+    *   **`layout/item_channel.xml`**: Define cómo se ve un solo elemento en la cuadrícula. Será un `ImageView` para el logo y un `TextView` para el nombre del canal.
+    
