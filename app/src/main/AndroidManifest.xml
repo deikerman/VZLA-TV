@@ -29,7 +29,7 @@
         android:name=".ui.player.PlayerActivity"
         android:screenOrientation="landscape"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
-        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        android:theme="@style/Theme.VZLATV" />
 
 </application>
 

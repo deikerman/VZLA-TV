@@ -1,5 +1,6 @@
 package com.example.vzlatv
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -12,11 +13,21 @@ class M3UParser {
 
     suspend fun fetchAndParse(url: String, timeoutMs: Long = 10000): List<M3UEntry> =
         withContext(Dispatchers.IO) {
+            Log.d("VzlaTV", "M3UParser: fetching $url")
             val req = Request.Builder().url(url).build()
             client.newCall(req).execute().use { resp ->
-                if (!resp.isSuccessful) return@withContext emptyList()
-                val body = resp.body?.string() ?: return@withContext emptyList()
-                parse(body)
+                if (!resp.isSuccessful) {
+                    Log.e("VzlaTV", "M3UParser: fetch failed for $url, code=${resp.code}")
+                    return@withContext emptyList()
+                }
+                val body = resp.body?.string()
+                if (body.isNullOrEmpty()) {
+                    Log.w("VzlaTV", "M3UParser: empty body from $url")
+                    return@withContext emptyList()
+                }
+                val parsed = parse(body)
+                Log.d("VzlaTV", "M3UParser: parsed ${parsed.size} entries from $url")
+                parsed
             }
         }
 

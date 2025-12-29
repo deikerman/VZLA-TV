@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vzlatv.Channel
 import com.example.vzlatv.R
+import com.example.vzlatv.ChannelIcons
 import com.example.vzlatv.ui.player.PlayerActivity
-import com.bumptech.glide.Glide
 
 class ChannelAdapter(private val items: List<Channel>) : RecyclerView.Adapter<ChannelAdapter.VH>() {
 
@@ -28,18 +28,19 @@ class ChannelAdapter(private val items: List<Channel>) : RecyclerView.Adapter<Ch
         val ch = items[position]
         holder.title.text = ch.name
         holder.itemView.isFocusable = true
-        // load logo if available
-        if (ch.logoUrl.isNotBlank()) {
-            Glide.with(holder.logo).load(ch.logoUrl).into(holder.logo)
+        // usar icono local fijo según nombre del canal si existe
+        val iconRes = ChannelIcons.iconFor(ch.name)
+        if (iconRes != null) {
+            holder.logo.setImageResource(iconRes)
         } else {
-            holder.logo.setImageResource(android.R.color.darker_gray)
+            holder.logo.setImageDrawable(null)
         }
 
         holder.itemView.setOnClickListener {
             val ctx = holder.itemView.context
             val intent = Intent(ctx, PlayerActivity::class.java).apply {
-                putExtra("m3u_url", "")
-                putExtra("fallback_url", ch.primaryStreamUrl)
+                putExtra("m3u_url", ch.primaryStreamUrl)
+                putExtra("fallback_url", ch.fallbackStreamUrl)
             }
             ctx.startActivity(intent)
         }

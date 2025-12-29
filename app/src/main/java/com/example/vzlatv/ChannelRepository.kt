@@ -2,39 +2,39 @@ package com.example.vzlatv
 
 class ChannelRepository {
     fun getChannels(): List<Channel> {
-        // Aquí defines tu lista de canales
+        // Lista actualizada con los 4 canales M3U proporcionados
         return listOf(
             Channel(
-                "1",
+                "0",
                 "VTV",
                 "",
-                "https://live.eu-north-1a.cf.dmcdn.net/sec2(9dbeM8Jr0AKqSzScSSfVmV8iDvEnP9bWwheaOwX2bflIP1ffiObCNWdyMn3XT4SFEgEoLGl6jE4JTAFOL8YA6iSkh6uIiHS1TFbKkQkTYSS3FZKdiAb5VWFlkB74Sp2r)/dm/3/x930kre/d/live-480@60.m3u8",
+                "https://live.eu-north-1b.cf.dmcdn.net/sec2(xwyafn0RLGDOem-rBtsx5QmC9awPrtDq2487GgNfgAPjOsmgvY8EYxHHU7ilbJrrMZxW7SQj2nTUpjWqzHTuWKk9-kuYTyq2o-XCs4UGb8RF6hhgB6aehOOyxIyWlNoB)/dm/3/x930kre/d/live-720@60.m3u8",
                 ""
             ),
             Channel(
-                "2",
+                "1",
                 "TVES",
                 "",
                 "http://38.41.8.1:8000/play/a03k",
                 ""
             ),
             Channel(
-                "3",
+                "2",
                 "TELESUR",
                 "",
                 "http://38.41.8.1:8000/play/a03l",
                 ""
             ),
             Channel(
-                "4",
+                "3",
                 "TVFANB",
                 "",
                 "http://38.41.8.1:8000/play/a03r",
                 ""
             ),
             Channel(
-                "5",
-                "VIVE",
+                "4",
+                "Vive TV",
                 "",
                 "http://38.41.8.1:8000/play/a03j",
                 ""
