@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(mylibs.plugins.androidApplication)
+    alias(mylibs.plugins.kotlinAndroid)
 }
 
 android {
@@ -20,9 +22,8 @@ android {
         applicationId = "com.example.vzlatv"
         minSdk = 21
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.1"
-
+        versionCode = 3
+        versionName = "1.2"
     }
 
     buildTypes {
@@ -35,21 +36,32 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
 
 dependencies {
+    // AndroidX (ya usando version catalog)
+    implementation(mylibs.core.ktx)
+    implementation(mylibs.appcompat)
+    implementation(mylibs.material)
+    implementation(mylibs.recyclerview)
 
-    implementation(libs.androidx.core.ktx)
-    implementation("com.google.android.exoplayer:exoplayer:2.18.5")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    // ExoPlayer
+    implementation(mylibs.exoplayer)
+
+    // Networking
+    implementation(mylibs.okhttp)
+
+    // Coroutines
+    implementation(mylibs.coroutinesAndroid)
 }
