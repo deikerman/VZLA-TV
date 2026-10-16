@@ -1,21 +1,12 @@
 VzlaTV (Android TV)
 =====================
 
-Quick notes
-- The project shows a 3-column grid of channels on Android TV. Selecting a channel opens the player.
-- Channel logos are configured in `app/src/main/java/com/example/vzlatv/ChannelRepository.kt` — add high-quality logo URLs there.
-- Playback: app first tries to parse an M3U (if provided) and plays entries; on playback error it automatically falls back to the channel `primaryStreamUrl`.
+Notas rápidas
+- El proyecto muestra una cuadrícula de canales de 3 columnas en Android TV. Al seleccionar un canal, se abre el reproductor.
+- Reproducción: la aplicación intenta primero procesar un archivo M3U (si se proporciona) y reproducir las entradas; si ocurre un error de reproducción, recurre automáticamente a la `primaryStreamUrl` del canal.
 
-How to test locally
-1. Open the project in Android Studio.
-2. Make sure you have an Android SDK and an emulator (or physical Android TV) available.
-3. Sync Gradle (the app module now uses ExoPlayer, OkHttp, Coroutines and Glide).
-4. Run the app on an Android TV device or emulator. The main screen shows channels in a 3-column grid.
-
-Adding logos
-- Edit `ChannelRepository.getChannels()` and set the third parameter (`logoUrl`) to a direct image URL (PNG/JPG/SVG hosted publicly). Example:
-
-  Channel("1", "VTV", "https://example.com/vtv-logo.png", "https://.../live.m3u8", "")
-
-Notes about building here
-- I could not run a device/emulator build from this environment because an Android SDK and emulator are not available here. If you want, I can provide Gradle commands to run on your machine.
+Cómo probarlo localmente
+1. Abre el proyecto en Android Studio.
+2. Asegúrate de tener disponibles el SDK de Android y un emulador (o un dispositivo Android TV físico).
+3. Sincroniza Gradle (el módulo de la aplicación ahora utiliza ExoPlayer, OkHttp, Coroutines y Glide).
+4. Ejecuta la aplicación en un dispositivo Android TV o en un emulador. La pantalla principal muestra los canales en una cuadrícula de 3 columnas.
